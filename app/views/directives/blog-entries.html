@@ -1,0 +1,19 @@
+<div data-loading-indicator="blogEntries" class="col-sm-12"></div>
+<div class="col-sm-12 blog-list" data-ng-show="blogEntries">
+  <ul class="col-sm-12 no-list-style">
+    <li ng-repeat="entry in blogEntries" data-blog-entry-date="{{ entry.created[0].value }}">
+      <section>
+        <div class="col-sm-3 blog-date">
+          <p>
+            <span class="fa fa-calendar-o"></span>&nbsp;
+            {{ entry.created[0].value * 1000 | date:'dd MMMM yyyy' }}
+            </p>
+        </div>
+        <div class="col-sm-9 panel clear-none">
+          <h2 class=""><a data-ng-href="{{ createPath(entry.title[0].value) }}">{{ entry.title[0].value }}</a></h2>
+          <p class="about-content" ng-bind-html="entry.body[0].summary"></p>
+        </div>
+      </section>
+    </li>
+  </ul>
+</div>

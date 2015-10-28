@@ -1,0 +1,29 @@
+<div ng-controller="BoardsCtrl" class="content col-sm-12">      
+  <div class="row">    
+      <div class="col-md-8">
+        <h1>Boards</h1>
+        <p>Stackduino boards, past and present</p>
+      </div>
+      <ul class="col-md-4 plain pull-right no-list-style display-options">
+        <li>
+          Display
+          <a href="javascript:void(0)" 
+             data-ng-click="display.formats.grid = !display.formats.grid" 
+             title="View type" 
+             data-ng-class="display.formats.grid === true ? 'fa fa-columns' : 'fa fa-list'">
+          </a>
+        </li>
+        <li>
+        Sort
+          <a href="javascript:void(0)" 
+            data-ng-click="display.sort.order = !display.sort.order" 
+            title="Sort" 
+            data-ng-class="display.sort.order === true ? 'asc-active' : 'desc-active'">
+              <span class="fa fa-sort-asc"></span>
+              <span class="fa fa-sort-desc"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <article data-board-list class="row boards-list"><article>
+</div>

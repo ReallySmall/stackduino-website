@@ -1,0 +1,17 @@
+<div class="panel images image-slider" data-ng-show="items.length">
+  <h3 data-ng-if="showTitle" class="panel-header">Images</h3>
+  <div class="js-flexslider">
+    <ul class="slides plain no-list-style">
+      <li data-ng-repeat="item in items">
+        <a href="http://flickr.com/photo.gne?id={{item.id}}">
+          <figure>       
+              <img ng-src="{{ item.href }}" />
+              <figcaption>
+                <p>{{ item.title }}</p>
+              </figcaption>
+          </figure>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

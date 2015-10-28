@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Stackduino - an Arduino compatible focus stacking controller</title>
+    <base href="/">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta name="fragment" content="!"/>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/flexslider/flexslider.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="/app/styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="testApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Header -->
+    <header id="masthead" ng-controller="MainCtrl" role="banner">
+      <div class="container">
+        <div class="row site-header">
+          <div id="logo" class="site-branding col-sm-8">
+            <a href="/" class="home-link" title="Home">
+              <p class="animated-site-logo js-animate-logo">
+                <span class="fa fa-pause"></span>
+                <span class="fa fa-camera"></span>
+              </p>
+              <div class="site-descriptor">
+                <h1 id="site-title">
+                  Stackduino
+                </h1>
+                <p class="plain site-slogan">An Arduino compatible focus stacking controller</p>
+              </div>
+            </a>
+          </div>
+          <div class="social-links col-sm-4">
+            <ul class="plain">
+              <li data-ng-repeat="link in socialLinks">
+                <a href="{{link.href}}" title="{{link.title}}">
+                  <span class="fa fa-{{link.icon}}">
+                    <span class="visually-hidden">{{link.title}}</span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <div data-ng-controller="MainCtrl">
+
+    <!-- Home page feature images -->
+    <section data-ng-show="isCurrentPath('/')" class="home-feature-images">
+      <div class="container">
+        <div class="row">
+          <div data-flex-slider="featureImages" data-show-title="false" data-slide="false"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main horizontal menu bar -->
+    <section>
+      <div class="container">
+        <nav class="row" id="preface-area">
+            <ul>
+              <li data-ng-repeat="item in menuItems" class="preface-block col-sm-3 block-{{$index + 1}}">
+                <a href="{{item.href}}" data-ng-class="{active: isCurrentPath(item.href)}">
+                  <h2><span class="fa fa-{{item.icon}}"></span>{{item.title}}</h2>
+                </a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Breadcrumbs -->
+    <section data-ng-hide="isCurrentPath('/')">
+      <div class="container breadcrumb-nav">
+        <div class="row">
+          <nav class="page-utils col-md-12">
+            <ol class="ab-nav breadcrumb">
+              <li data-ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path" data-ng-class="{ active: $last }">
+                <a data-ng-if="!$last" data-ng-href="{{ breadcrumb.path }}" data-ng-bind="breadcrumb.label" class="margin-right-xs"></a>
+                <span data-ng-if="$last" data-ng-bind="breadcrumb.label"></span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Page partial container -->
+  <section>
+    <div class="container">
+      <div id="main-content" class="row" ng-view="" autoscroll="true"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="colophon" role="contentinfo">
+    <div class="container">
+      <div class="row site-footer" data-ng-controller="MainCtrl">
+        <ul class="plain col-sm-4">
+          <li data-ng-repeat="item in footerLinks">
+            <a href="{{item.href}}">
+              {{item.title}}
+            </a>
+          </li>
+        </ul>
+        <ul class="plain col-sm-4">
+          <li data-ng-repeat="item in footerLinks">
+            <a href="{{item.href}}">
+              {{item.title}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/ng-breadcrumbs/dist/ng-breadcrumbs.min.js"></script>
+    <script src="bower_components/flexslider/jquery.flexslider.js"></script>
+    <script src="bower_components/get-style-property/get-style-property.js"></script>
+    <script src="bower_components/get-size/get-size.js"></script>
+    <script src="bower_components/matches-selector/matches-selector.js"></script>
+    <script src="bower_components/eventie/eventie.js"></script>
+    <script src="bower_components/doc-ready/doc-ready.js"></script>
+    <script src="bower_components/eventEmitter/EventEmitter.js"></script>
+    <script src="bower_components/fizzy-ui-utils/utils.js"></script>
+    <script src="bower_components/outlayer/item.js"></script>
+    <script src="bower_components/outlayer/outlayer.js"></script>
+    <script src="bower_components/masonry/masonry.js"></script>
+    <script src="bower_components/isotope/dist/isotope.pkgd.min.js"></script>
+    <script src="bower_components/angular-utils-pagination/dirPagination.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="bower_components/angular-seo/angular-seo.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="app/scripts/angularApp.js"></script>
+    <script src="app/scripts/controllers/main.js"></script>
+    <script src="app/scripts/controllers/home.js"></script>
+    <script src="app/scripts/controllers/about.js"></script>
+    <script src="app/scripts/controllers/boards.js"></script>
+    <script src="app/scripts/controllers/board.js"></script>
+    <script src="app/scripts/services/getboards.js"></script>
+    <script src="app/scripts/directives/boardlist.js"></script>
+    <script src="app/scripts/directives/expandinglist.js"></script>
+    <script src="app/scripts/directives/flexslider.js"></script>
+    <script src="app/scripts/directives/fielditem.js"></script>
+    <script src="app/scripts/directives/repolink.js"></script>
+    <script src="app/scripts/services/getpages.js"></script>
+    <script src="app/scripts/services/getapiroots.js"></script>
+    <script src="app/scripts/controllers/blog.js"></script>
+    <script src="app/scripts/controllers/blogEntry.js"></script>
+    <script src="app/scripts/services/getblogentries.js"></script>
+    <script src="app/scripts/directives/blogentries.js"></script>
+    <script src="app/scripts/directives/loadingindicator.js"></script>
+    <script src="app/scripts/services/utils.js"></script>
+    <script src="app/scripts/controllers/gallery.js"></script>
+    <script src="app/scripts/directives/menuitem.js"></script>
+    <script src="app/scripts/services/getflickrimages.js"></script>
+    <script src="app/scripts/directives/galleryitems.js"></script>
+    <script src="app/angular-seo.js"></script>
+    <!-- endbuild -->
+
+</body>
+</html>

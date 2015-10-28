@@ -1,0 +1,19 @@
+<li ng-cloak data-ng-if="items[0].value && items.length > 1">
+  <p class="plain">
+    {{ items[0].value }}
+    <a href="javascript:void(0)" title="Toggle contents" data-ng-click="expand = !expand" data-ng-show="items[1].value">
+      <span data-ng-hide="expand" class="fa fa-plus-circle">
+        <span class="visually-hidden">Show subitems of {{ items[0].value }}</span>
+      </span>
+      <span data-ng-show="expand" class="fa fa-minus-circle">
+        <span class="visually-hidden">Hide subitems of {{ items[0].value }}</span>
+      </span>
+    </a>
+  </p>
+  <ul ng-show="expand">
+    <li data-ng-repeat="item in items" data-ng-if="$index > 0 && item.value">
+      <span class="field-label">Pin {{ $index }}:</span>
+      <span class="field-item">{{ item.value }}</span>
+    </li>
+  </ul>
+</li>

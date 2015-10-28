@@ -1,0 +1,58 @@
+<div data-ng-show="noResults">
+    <p class="col-sm-12"><span class="fa fa-remove"></span> This board doesn't exist</p>
+</div>
+
+<div ng-controller="BoardCtrl" data-ng-show="boardData" class="content">      
+    <article class="col-sm-7">
+      <h1>{{ boardData.title[0].value }}</h1>
+      <div class="clearfix">
+        <p class="version-status active">
+          <span class="fa fa-flash {{boardData.field_status[0].value.replace(' ', '-')}}"></span> {{ boardData.field_status[0].value }}
+        </p>
+      </div>
+
+      <div class="about-content" ng-bind-html="boardData.body[0].value"></div>
+
+      <div class="panel specifications">
+        <h2 class="panel-header">Specifications</h2>
+        
+        <!-- Board main components -->
+        <section>
+        <h3 class="panel-sub-header">Components</h3>
+        <ul class="no-list-style">
+          <li data-field-item=""></li>
+        </ul>
+        </section>
+
+        <!-- Board power specs -->
+        <section >
+          <h3 class="panel-sub-header">Power</h3>
+          <ul class="no-list-style">
+            <li data-field-item="boardData.field_input_voltage_gp_power"></li>
+          </ul>
+        </section>
+
+        <!-- Board pinouts -->
+        <section>
+          <h3 class="panel-sub-header">Pinouts</h3>
+          <ul class="no-list-style">
+            <li data-expanding-list="boardData.field_external_io_gp_pinouts"></li>
+            <li data-expanding-list="boardData.field_header_1"></li>
+          </ul>
+        </section>
+
+      </div>
+    </article>
+
+    <!--sidebar-->
+    <div class="aside col-sm-5">
+      <aside>
+        
+        <!-- Repository link -->
+        <section data-repo-link></section> 
+        <!-- Image slider -->      
+        <section data-flex-slider="boardData.images" data-show-title="true"></section>
+
+      </aside>
+    </div>    
+</div>

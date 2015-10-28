@@ -1,0 +1,13 @@
+<ul class="plain">
+	<li data-ng-repeat="image in images" class="gallery-image col-sm-4">
+		<a href="http://flickr.com/photo.gne?id={{image.id}}">
+		<figure class="panel">
+			<img data-ng-src="https://farm{{image.farm}}.staticflickr.com/{{image.server}}/{{image.id}}_{{image.secret}}_b.jpg" alt="{{image.title}}" />
+			<figcaption>
+				<p class="plain">{{image.title}}</p>
+				<p class="plain">By {{image.ownername}}</p>
+			</figcaption>
+		</figure>
+		</a>
+	</li>
+</ul>

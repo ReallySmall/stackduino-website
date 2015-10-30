@@ -12,7 +12,6 @@ angular.module('testApp')
   .factory("getFlickrImages", function($http, getApiRoots) {
 
   	var apiArgs = {
-  		apiKey: getApiRoots.flickrKey,
   		userId: '&user_id=54092274@N06',
   		format: '&format=json&nojsoncallback=1',
   		searchMethod: '&method=flickr.photos.search',
@@ -24,41 +23,39 @@ angular.module('testApp')
   		mode: '&safe_search=1' 
   	};
 
-  	var imgObj = {};
-
-	var taggedWithStackduino = {
+  	var taggedWithStackduino = {
 	    doRequest: function() {
 
-	      	return $http({
-	      		method:'GET',
+      	return $http({
+      		method:'GET',
     			dataType: 'json',
-	      		url: getApiRoots.flickr + apiArgs.apiKey + apiArgs.format + apiArgs.searchMethod + apiArgs.tags + apiArgs.extras + apiArgs.mode,
-	      		cache: true 
-	      	});
+	      	url: getApiRoots.flickr + apiArgs.format + apiArgs.searchMethod + apiArgs.tags + apiArgs.extras + apiArgs.mode,
+	      	cache: true 
+	      });
 
 	    }
-	};
+  	};
 
-	var siteImages = {
-		doRequest: function() {
+  	var siteImages = {
+  		doRequest: function() {
 
-	      	return $http({
-	      		method:'GET',
-    			dataType: 'json',
-	      		url: getApiRoots.flickr + apiArgs.apiKey + apiArgs.userId + apiArgs.format + apiArgs.albumMethod + apiArgs.photoSet + apiArgs.extras + apiArgs.mode,
-	      		cache: true 
-	      	});
+  	    return $http({
+  	      method:'GET',
+      		dataType: 'json',
+  	      url: getApiRoots.flickr + apiArgs.userId + apiArgs.format + apiArgs.albumMethod + apiArgs.photoSet + apiArgs.extras + apiArgs.mode,
+  	      cache: true 
+  	     });
 
-		}
-	};
+  		}
+  	};
 
-	var pageImages = {
-		doRequest: function(obj) {
+  	var pageImages = {
+  		doRequest: function(obj) {
 
-	      	return;
+  	      	return;
 
-		}
-	};
+  		}
+  	};
 
     return {
       requestAll: function() { 

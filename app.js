@@ -4,9 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var request = require("request");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var apis = require('./routes/apis');
 
 var app = express();
 
@@ -25,19 +27,25 @@ app.use(express.static(path.join(__dirname, 'app')));
 app.use('/', routes);
 app.use('/users', users);
 
-app.get('/api/flickr', function(req, res){
-  
+// route to proxy calls to content api
+app.get('/api/content/:args', function(req, res){
+  var query = apis.routes.content + req.params.args;
+  request(query, function(error, response, body) {
+    res.send(body);
+  });
 });
 
+// route to proxy calls to Flickr api
+app.get('/api/flickr/:args', function(req, res){
+  var query = apis.routes.flickr + '?api_key=' + apis.keys.flickr.api_key + req.params.args;
+    request(query, function(error, response, body) {
+    res.send(body);
+  });
+});
+
+// everything else is handled by the Angular routing
 app.get('*', function(req, res){
   res.sendfile('./app/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-});
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
 });
 
 // error handlers

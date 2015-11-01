@@ -25,7 +25,12 @@ angular.module('testApp')
             			animation: scope.slide == true ? 'slide' : 'fade',
             			directionNav: false,
                   slideshowSpeed: 15000,
-                  animationSpeed: 1000
+                  animationSpeed: 1000,
+                  smoothHeight: true,
+                  start: function(){
+                  },
+                  after: function(){
+                  }
         			});
     			}, 50);
         }, true);

@@ -8,11 +8,10 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "font-awesome/font-awesome";
 
 body {
-  background: #93B4C3;
+  background: $blue;
   &.no-js {
     .no-js {
       display: none;
-
     }
   }
 }
@@ -102,8 +101,8 @@ ul {
 .container {
   position: relative;
   &.breadcrumb-nav {
-    border-left: 3px solid #93B4C3;
-    border-right: 3px solid #93B4C3;
+    border-left: 3px solid $blue;
+    border-right: 3px solid $blue;
   }
   &:before {
     content: '';
@@ -227,16 +226,10 @@ ul {
 .flex-control-paging {
   position: absolute;
   bottom: 20px !important;
-  left: 20px !important;
   z-index: 100;
 }
 
 .home-feature-images {
-  /* when hiding the picture */
-  &.ng-hide-add         { animation:0.5s slideOutUp ease; }
-
-  /* when showing the picture */
-  &.ng-hide-remove      { animation:0.5s slideInDown ease; }
   .panel {
     padding: 0;
     margin: 0;
@@ -244,7 +237,7 @@ ul {
   }
   figure {
     position: relative;
-    max-height: 650px;
+    //max-height: 650px;
     figcaption {
       position: absolute;
       right: 0;
@@ -278,25 +271,18 @@ ul {
   .preface-block {
     color: $grey;
     display: block;
-    border-left: 6px solid #dddddd;
+    border-right: 6px solid #dddddd;
     &:first-child {
-      border-left: none;
+      border-left: 6px solid #dddddd;
     }
-    &.block-1 {
-      //text-align: left;
-    }
-    &.block-3 {
-      //text-align: right;
+    &.active {
+      background: $white;
     }
     a {
       display: block;
       color: $black;
       &:hover, &:focus, &:active {
         text-decoration: underline;
-        background: $lightest-grey;
-      }
-      &.active {
-        color: $orange;
       }
       h2 {
         margin: 20px 0;

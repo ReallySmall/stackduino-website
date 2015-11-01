@@ -8,7 +8,7 @@
  * Controller of the testApp
  */
 angular.module('testApp')
-  .controller('BoardCtrl', function($scope, $routeParams, $http, $location, getBoards, getApiRoots) {
+  .controller('BoardCtrl', function($scope, $routeParams, $http, $location, getBoards, getApiRoots, getFlickrImages) {
 
     var boardParam = $routeParams.board;
 
@@ -19,7 +19,6 @@ angular.module('testApp')
             var boardTitle = data[i].title[0].value.replace(' ', '-').toLowerCase();
             if(boardTitle === boardParam){
                 $scope.boardData = data[i];
-                console.log($scope.boardData);
                 break;
             }
         }
@@ -28,7 +27,24 @@ angular.module('testApp')
             $location.path('/');
         } else {
 
-    	$scope.boardData.images = $scope.boardData._links[getBoards.imageHref];
+        getFlickrImages.requestSiteImages()
+        .success(function(data, status, headers) {
+
+          var rawResults = data.photoset.photo;
+          var boardVersion = 'v' + $scope.boardData.field_board_machine_id[0].value.replace(/\./g,'');
+          
+          $scope.boardData.images = [];
+
+          for(var i = 0; i < rawResults.length; i++){
+            if(rawResults[i].tags.indexOf(boardVersion) >= 0){
+              $scope.boardData.images.push(rawResults[i]);
+            }
+          }
+          for(var i = 0; i < $scope.boardData.images.length; i++){
+            var $this = $scope.boardData.images[i];              
+            $this.href = 'https://farm' + $this.farm + '.staticflickr.com/' + $this.server + '/' + $this.id + '_' + $this.secret + '_b.jpg';
+          }
+        });
 
     	//On document ready (move this into a directive)
         angular.element(document).ready(function(){
@@ -51,7 +67,6 @@ angular.module('testApp')
                         timeout: 5000
                     }).success(function (data) {
                         $scope.issues = data;
-                        console.log($scope.issues);
                     });
 
             }

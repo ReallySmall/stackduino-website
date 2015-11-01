@@ -65,6 +65,18 @@ angular
         controller: 'GalleryCtrl',
         controllerAs: 'gallery'
       })
+      .when('/tools', {
+        templateUrl: 'views/tools.html',
+        label: 'Tools',
+        controller: 'ToolsCtrl',
+        controllerAs: 'tools'
+      })
+      .when('/tools/:tool', {
+        templateUrl: 'views/tools.html',
+        label: 'Tool',
+        controller: 'ToolsCtrl',
+        controllerAs: 'tools'
+      })
       .otherwise({
         redirectTo: '/'
       });

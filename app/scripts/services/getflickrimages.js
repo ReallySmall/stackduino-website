@@ -17,7 +17,7 @@ angular.module('testApp')
   		searchMethod: '&method=flickr.photos.search',
   		albumMethod: '&method=flickr.photosets.getPhotos',
   		imageSizeMethod: '&method=flickr.photos.getSizes',
-  		photoSet: '&photoset_id=72157626574230146',
+  		photoSet: '&photoset_id=72157632341602394',
   		tags: '&tag_mode=all&tags=stackduino,-controller',
   		extras: '&extras=tags,owner_name,url_o',
   		mode: '&safe_search=1' 
@@ -49,10 +49,20 @@ angular.module('testApp')
   		}
   	};
 
-  	var pageImages = {
-  		doRequest: function(obj) {
+  	var siteImagesByTag = {
+  		doRequest: function(data, tag) {
 
-  	      	return;
+        var matchingImages = [];
+
+        for(var i = 0; i < data.length; i++){
+          var $this = data[i];
+          if($this.tags.indexOf(tag) >= 0){ 
+            var href = 'https://farm' + $this.farm + '.staticflickr.com/' + $this.server + '/' + $this.id + '_' + $this.secret + '_b.jpg';
+            matchingImages.push(href);
+          }
+        }
+
+  	    return matchingImages;
 
   		}
   	};
@@ -64,9 +74,8 @@ angular.module('testApp')
       requestSiteImages: function() { 
       	return siteImages.doRequest(); 
       },
-      requestPageImages: function(obj) {
-      	imgObj = obj;
-      	return pageImages.doRequest(obj);
+      filterByTag: function(obj) {
+      	return filterByTag.doRequest(obj);
       }
     };
 

@@ -60,11 +60,11 @@
 
     <!-- Home page feature images -->
     <section data-ng-show="isCurrentPath('/')" class="home-feature-images">
-      <div class="container">
-        <div class="row">
+      <!--div class="container">
+        <div class="row"-->
           <div data-flex-slider="featureImages" data-show-title="false" data-slide="true"></div>
-        </div>
-      </div>
+        <!--/div>
+      </div-->
     </section>
 
     <!-- Main horizontal menu bar -->
@@ -98,14 +98,14 @@
       </div>
     </section>
 
-  </div>
-
   <!-- Page partial container -->
-  <section>
+  <section data-ng-class="{ 'home' : isCurrentPath('/') }">
     <div class="container">
       <div id="main-content" class="row" ng-view="" autoscroll="true"></div>
     </div>
   </section>
+
+  </div>
 
   <!-- Footer -->
   <footer id="colophon" class="site-footer" role="contentinfo">

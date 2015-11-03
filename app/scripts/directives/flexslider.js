@@ -23,7 +23,8 @@ angular.module('testApp')
     			$timeout(function(){
     				$('.js-flexslider').flexslider({
             			animation: scope.slide == true ? 'slide' : 'fade',
-            			directionNav: false,
+            			directionNav: true,
+                  customDirectionNav: $('.flexslider .slide-cover'),
                   slideshowSpeed: 15000,
                   animationSpeed: 1000,
                   smoothHeight: true,

@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "Stackduino-website",
   "private": true,
   "devDependencies": {
     "grunt": "^0.4.5",

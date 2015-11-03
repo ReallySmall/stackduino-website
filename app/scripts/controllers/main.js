@@ -69,7 +69,7 @@ angular.module('testApp')
       {
         title: 'Tools',
         href: '/tools',
-        icon: 'star'
+        icon: 'cogs'
       }
     ];
 

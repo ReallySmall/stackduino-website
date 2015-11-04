@@ -14,6 +14,7 @@ angular.module('testApp')
         .success(function(data, status, headers) {
           $scope.aboutContent = data[0];
           $scope.title = $scope.aboutContent.title[0].value;
+          $scope.summary = $scope.aboutContent.body[0].summary; 
           $scope.body = $scope.aboutContent.body[0].value;
         });
 

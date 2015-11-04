@@ -11,6 +11,8 @@ angular.module('testApp')
 
   .factory("getFlickrImages", function($http, getApiRoots) {
 
+    //api args to use for Flickr requests
+    //api key is supplied from back end
   	var apiArgs = {
   		userId: '&user_id=54092274@N06',
   		format: '&format=json&nojsoncallback=1',
@@ -23,6 +25,7 @@ angular.module('testApp')
   		mode: '&safe_search=1' 
   	};
 
+    //get Flickr images tagged with 'Stackduino'
   	var taggedWithStackduino = {
 	    doRequest: function() {
 
@@ -36,6 +39,7 @@ angular.module('testApp')
 	    }
   	};
 
+    //get image data from Flickr album
   	var siteImages = {
   		doRequest: function() {
 
@@ -49,6 +53,7 @@ angular.module('testApp')
   		}
   	};
 
+    //extract references to Flickr images which match the supplied tag
   	var siteImagesByTag = {
   		doRequest: function(data, tag) {
 
@@ -57,15 +62,23 @@ angular.module('testApp')
         for(var i = 0; i < data.length; i++){
           var $this = data[i];
           if($this.tags.indexOf(tag) >= 0){ 
-            var href = 'https://farm' + $this.farm + '.staticflickr.com/' + $this.server + '/' + $this.id + '_' + $this.secret + '_b.jpg';
-            matchingImages.push(href);
+            var imageObj = {
+              href : 'https://farm' + $this.farm + '.staticflickr.com/' + $this.server + '/' + $this.id + '_' + $this.secret + '_b.jpg'
+            };
+            matchingImages.push(imageObj);
           }
         }
+        
+        cachedTags[tag] = matchingImages;
 
   	    return matchingImages;
 
   		}
   	};
+
+    //object to cache results of previous image tag searches for quick retrieval
+    //TODO - this doesn't work yet, the getting and setting are all wrong
+    var cachedTags = {};
 
     return {
       requestAll: function() { 
@@ -74,8 +87,14 @@ angular.module('testApp')
       requestSiteImages: function() { 
       	return siteImages.doRequest(); 
       },
-      filterByTag: function(obj) {
-      	return filterByTag.doRequest(obj);
+      filterByTag: function(data, tag) {
+      	return siteImagesByTag.doRequest(data, tag);
+      },
+      cachedTag: function(tag) {
+        if(cachedTags[tag]) {
+          return cachedTags[tag]
+        }
+        return null;
       }
     };
 

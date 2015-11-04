@@ -33,17 +33,9 @@ angular.module('testApp')
           var rawResults = data.photoset.photo;
           var boardVersion = 'v' + $scope.boardData.field_board_machine_id[0].value.replace(/\./g,'');
           
-          $scope.boardData.images = [];
+          //get the urls of images with tags matching this board version
+          $scope.boardData.images = getFlickrImages.cachedTag(boardVersion) || getFlickrImages.filterByTag(rawResults, boardVersion);
 
-          for(var i = 0; i < rawResults.length; i++){
-            if(rawResults[i].tags.indexOf(boardVersion) >= 0){
-              $scope.boardData.images.push(rawResults[i]);
-            }
-          }
-          for(var i = 0; i < $scope.boardData.images.length; i++){
-            var $this = $scope.boardData.images[i];              
-            $this.href = 'https://farm' + $this.farm + '.staticflickr.com/' + $this.server + '/' + $this.id + '_' + $this.secret + '_b.jpg';
-          }
         });
 
     	//On document ready (move this into a directive)

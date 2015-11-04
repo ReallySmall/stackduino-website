@@ -57,19 +57,19 @@ angular.module('testApp')
         icon: 'code-fork'
       },
       {
-        title: 'Blog',
-        href: '/blog',
-        icon: 'comment'
-      },
-      {
         title: 'Gallery',
         href: '/gallery',
         icon: 'star'
       },
       {
-        title: 'Tools',
-        href: '/tools',
-        icon: 'cogs'
+        title: 'Updates',
+        href: '/blog',
+        icon: 'info-circle'
+      },
+      {
+        title: 'FAQ',
+        href: '/faq',
+        icon: 'question-circle'
       }
     ];
 

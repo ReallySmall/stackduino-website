@@ -55,13 +55,14 @@ angular.module('testApp')
 
     //extract references to Flickr images which match the supplied tag
   	var siteImagesByTag = {
-  		doRequest: function(data, tag) {
+  		doRequest: function(data, tags) {
 
         var matchingImages = [];
 
         for(var i = 0; i < data.length; i++){
           var $this = data[i];
-          if($this.tags.indexOf(tag) >= 0){ 
+          var tagMatch = false;
+          if($this.tags.indexOf(tags) >= 0){ 
             var imageObj = {
               href : 'https://farm' + $this.farm + '.staticflickr.com/' + $this.server + '/' + $this.id + '_' + $this.secret + '_b.jpg'
             };
@@ -69,7 +70,7 @@ angular.module('testApp')
           }
         }
         
-        cachedTags[tag] = matchingImages;
+        cachedTags[tags] = matchingImages;
 
   	    return matchingImages;
 
@@ -87,8 +88,8 @@ angular.module('testApp')
       requestSiteImages: function() { 
       	return siteImages.doRequest(); 
       },
-      filterByTag: function(data, tag) {
-      	return siteImagesByTag.doRequest(data, tag);
+      filterByTag: function(data, tags) {
+      	return siteImagesByTag.doRequest(data, tags);
       },
       cachedTag: function(tag) {
         if(cachedTags[tag]) {

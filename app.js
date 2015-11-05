@@ -12,6 +12,10 @@ var apis = require('./routes/apis');
 
 var app = express();
 
+app.locals.apiCache = {};
+var apiCacheTimeout = 900000; //15 minutes
+var lastRequestTime = new Date();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -27,20 +31,16 @@ app.use(express.static(path.join(__dirname, 'app')));
 app.use('/', routes);
 app.use('/users', users);
 
-// route to proxy calls to content api
+// route to proxy and cache calls to content api
 app.get('/api/content/:args', function(req, res){
   var query = apis.routes.content + req.params.args;
-  request(query, function(error, response, body) {
-    res.send(body);
-  });
+  res.send(returnApiContent(query));
 });
 
-// route to proxy calls to Flickr api
+// route to proxy and cache calls to Flickr api
 app.get('/api/flickr/:args', function(req, res){
   var query = apis.routes.flickr + '?api_key=' + apis.keys.flickr.api_key + req.params.args;
-    request(query, function(error, response, body) {
-    res.send(body);
-  });
+  res.send(returnApiContent(query));
 });
 
 // everything else is handled by the Angular routing
@@ -71,5 +71,33 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+var returnApiContent = function(query) {
+
+  var requestTime = new Date();
+
+  if(requestTime - app.locals.lastRequestTime > app.locals.apiCacheTimeout) { //If sufficient time has passed, make fresh api request
+    console.log('new api call');
+    app.locals.lastRequestTime = requestTime;
+    request(query, function(error, response, body) {
+      //add returned data to cache then return data
+      app.locals.apiCache[query] = body;
+      return body;
+    });
+  } else {
+    //check for cached version first
+    if(app.locals.apiCache.hasOwnProperty(query) && app.locals.apiCache[query].length){
+      console.log('cached api call');
+      return app.locals.apiCache[query];
+    } else {
+      request(query, function(error, response, body) {
+        //add returned data to cache then return data
+        console.log('no cache - new api call');
+        app.locals.apiCache[query] = body;
+        return body;
+      });
+    }
+  }
+};
 
 module.exports = app;

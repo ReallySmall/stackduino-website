@@ -34,7 +34,7 @@ angular.module('testApp')
           var boardVersion = 'v' + $scope.boardData.field_board_machine_id[0].value.replace(/\./g,'');
           
           //get the urls of images with tags matching this board version
-          $scope.boardData.images = getFlickrImages.cachedTag(boardVersion) || getFlickrImages.filterByTag(rawResults, boardVersion);
+          $scope.boardData.images = getFlickrImages.cachedTag([boardVersion]) || getFlickrImages.filterByTag(rawResults, [boardVersion]);
 
         });
 

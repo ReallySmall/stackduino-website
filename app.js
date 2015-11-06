@@ -9,12 +9,9 @@ var request = require("request");
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var apis = require('./routes/apis');
+var apicache = require('apicache').options({ debug: true }).middleware;
 
 var app = express();
-
-app.locals.apiCache = {};
-var apiCacheTimeout = 900000; //15 minutes
-var lastRequestTime = new Date();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,16 +28,20 @@ app.use(express.static(path.join(__dirname, 'app')));
 app.use('/', routes);
 app.use('/users', users);
 
-// route to proxy and cache calls to content api
-app.get('/api/content/:args', function(req, res){
+// route to proxy calls to content api
+app.get('/api/content/:args', apicache('15 minutes'), function(req, res){
   var query = apis.routes.content + req.params.args;
-  res.send(returnApiContent(query));
+  request(query, function(error, response, body) {
+    res.send(body);
+  });
 });
 
-// route to proxy and cache calls to Flickr api
-app.get('/api/flickr/:args', function(req, res){
+// route to proxy calls to Flickr api
+app.get('/api/flickr/:args', apicache('15 minutes'), function(req, res){
   var query = apis.routes.flickr + '?api_key=' + apis.keys.flickr.api_key + req.params.args;
-  res.send(returnApiContent(query));
+  request(query, function(error, response, body) {
+    res.send(body);
+  });
 });
 
 // everything else is handled by the Angular routing
@@ -86,7 +87,7 @@ var returnApiContent = function(query) {
     });
   } else {
     //check for cached version first
-    if(app.locals.apiCache.hasOwnProperty(query) && app.locals.apiCache[query].length){
+    if(app.locals.apiCache.hasOwnProperty(query)){
       console.log('cached api call');
       return app.locals.apiCache[query];
     } else {

@@ -62,8 +62,17 @@ angular.module('testApp')
         for(var i = 0; i < data.length; i++){
           var $this = data[i];
           var tagMatch = false;
-          if($this.tags.indexOf(tags) >= 0){ 
+          for(var j = 0; j < tags.length; j++){
+            if($this.tags.indexOf(tags[j]) >= 0){
+              tagMatch = true;
+            } else {
+              tagMatch = false;
+              break;
+            } 
+          }
+          if(tagMatch){
             var imageObj = {
+              id : $this.id,
               href : 'https://farm' + $this.farm + '.staticflickr.com/' + $this.server + '/' + $this.id + '_' + $this.secret + '_b.jpg'
             };
             matchingImages.push(imageObj);

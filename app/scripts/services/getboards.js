@@ -7,7 +7,7 @@
  * # getBoards
  * Service in the testApp.
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
 
 .factory("getBoards", function($http, getApiRoots) {
 

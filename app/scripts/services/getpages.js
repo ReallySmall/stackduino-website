@@ -7,7 +7,7 @@
  * # getPages
  * Service in the testApp.
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .factory("getPages", function($http, getApiRoots) {
 
 	var pageList = {

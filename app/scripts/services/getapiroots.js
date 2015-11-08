@@ -7,7 +7,7 @@
  * # getApiRoots
  * Service in the testApp.
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .factory("getApiRoots", function() {
 
 	var roots = {

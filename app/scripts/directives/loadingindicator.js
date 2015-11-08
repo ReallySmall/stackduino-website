@@ -6,7 +6,7 @@
  * @description
  * # loadingIndicator
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .directive('loadingIndicator', function () {
     return {
       templateUrl: '../views/directives/loading-indicator.html',

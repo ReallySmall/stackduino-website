@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('testApp', [
+  .module('stackduinoApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -47,35 +47,17 @@ angular
         controller: 'BoardCtrl',
         controllerAs: 'board'
       })
-      .when('/blog', {
-        templateUrl: 'views/blog.html',
-        label: 'Blog',
-        controller: 'BlogCtrl',
-        controllerAs: 'blog'
-      })
-      .when('/blog/:blogEntry', {
-        templateUrl: 'views/blog-entry.html',
-        label: 'BlogEntry',
-        controller: 'BlogEntryCtrl',
-        controllerAs: 'blogEntry'
+      .when('/build', {
+        templateUrl: 'views/build.html',
+        label: 'Build',
+        controller: 'BuildCtrl',
+        controllerAs: 'build'
       })
       .when('/gallery', {
         templateUrl: 'views/gallery.html',
         label: 'Gallery',
         controller: 'GalleryCtrl',
         controllerAs: 'gallery'
-      })
-      .when('/tools', {
-        templateUrl: 'views/tools.html',
-        label: 'Tools',
-        controller: 'ToolsCtrl',
-        controllerAs: 'tools'
-      })
-      .when('/tools/:tool', {
-        templateUrl: 'views/tools.html',
-        label: 'Tool',
-        controller: 'ToolsCtrl',
-        controllerAs: 'tools'
       })
       .otherwise({
         redirectTo: '/'

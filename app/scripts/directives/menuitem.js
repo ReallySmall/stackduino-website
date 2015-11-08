@@ -6,7 +6,7 @@
  * @description
  * # menuItem
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .directive('menuItem', function () {
     return {
       templateUrl: '../views/directives/menu-item.html',

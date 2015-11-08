@@ -1,8 +1,7 @@
 <section class="panel repository-link" ng-show="boardData.field_repository_link[0].value">
-  <h3 class="panel-header">Project files</h3>
-    
+  <h3 class="panel-header">Project files</h3>   
     <h4>
-      <a ng-href="{{ boardData.field_repository_link[0].value }}">{{ boardData.field_repository_link[0].value }}</a>
+      <a ng-href="{{ boardData.field_repository_link[0].value }}">View on Github</a>
     </h4>
     <p>Download the most recent schematic, board files and Arduino code for {{ boardData.title[0].value }}.</p>
 
@@ -16,13 +15,6 @@
               <li ng-repeat="commit in commits" class="list-group-item">
                 <span class="badge">{{commit.commit.committer.date | date:'dd MMMM yyyy'}}</span>
                 <a href="{{commit.html_url}}"> {{commit.commit.message}} </a>
-              </li>
-          </ul>
-          <h5 class="panel-sub-header">Tasks and issues</h5>
-          <ul class="list-group repo-commits">
-              <li ng-repeat="issue in issues" class="list-group-item">
-                <span class="badge">{{issue.updated_at | date:'dd MMMM yyyy'}}</span>
-                <a href="{{issue.html_url}}"> {{issue.title}} </a>
               </li>
           </ul>
        </div>

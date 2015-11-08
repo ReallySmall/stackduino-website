@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the testApp
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .controller('AboutCtrl', function ($scope, $http, $location, getPages, getApiRoots) {
     
   		getPages.requestAll()

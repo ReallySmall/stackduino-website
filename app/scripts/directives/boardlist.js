@@ -6,7 +6,7 @@
  * @description
  * # boardList
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .directive('boardList', function ($timeout) {
     return {
       templateUrl: '../views/directives/board-list.html',

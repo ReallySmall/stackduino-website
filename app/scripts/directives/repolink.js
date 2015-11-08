@@ -6,7 +6,7 @@
  * @description
  * # repoLink
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .directive('repoLink', function (getApiRoots) {
     return {
       templateUrl: '../views/directives/repo-link.html',

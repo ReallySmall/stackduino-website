@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the testApp
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .controller('BoardCtrl', function($scope, $routeParams, $http, $location, getBoards, getApiRoots, getFlickrImages) {
 
     var boardParam = $routeParams.board;

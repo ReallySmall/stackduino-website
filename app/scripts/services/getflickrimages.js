@@ -7,7 +7,7 @@
  * # flickr
  * Service in the testApp.
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
 
   .factory("getFlickrImages", function($http, getApiRoots) {
 

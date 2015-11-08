@@ -7,7 +7,7 @@
  * # HomeCtrl
  * Controller of the testApp
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .controller('HomeCtrl', function ($scope, $http, $location, getFeatureImages) {
 
   });

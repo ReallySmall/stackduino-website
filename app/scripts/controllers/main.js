@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the testApp
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .controller('MainCtrl', function ($scope, $rootScope, breadcrumbs, getFlickrImages, $location) {
   	//breadcrumbs.options = { 'Board': $routeProvider.board };
   	$scope.breadcrumbs = breadcrumbs;
@@ -57,20 +57,15 @@ angular.module('testApp')
         icon: 'code-fork'
       },
       {
+        title: 'Build',
+        href: '/build',
+        icon: 'gear'
+      },
+      {
         title: 'Gallery',
         href: '/gallery',
         icon: 'star'
       },
-      {
-        title: 'Updates',
-        href: '/blog',
-        icon: 'info-circle'
-      },
-      {
-        title: 'FAQ',
-        href: '/faq',
-        icon: 'question-circle'
-      }
     ];
 
     $scope.footerLinks = [ //hardcoded for now, maybe get this from api in future

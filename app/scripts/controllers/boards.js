@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the testApp
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .controller('BoardsCtrl', function ($scope, $http, $location, getBoards, getFlickrImages) {
 
   $scope.imageLink = getBoards.imageHref;

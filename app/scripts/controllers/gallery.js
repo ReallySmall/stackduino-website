@@ -7,13 +7,12 @@
  * # GalleryCtrl
  * Controller of the testApp
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .controller('GalleryCtrl', function ($scope, getFlickrImages) {
 
     getFlickrImages.requestAll()
 	    .success(function(data, status, headers) {
 	      $scope.images = data.photos.photo;
-	      console.log($scope.images);
 	    });
 
 	getFlickrImages.requestSiteImages()

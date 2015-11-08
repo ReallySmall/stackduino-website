@@ -6,7 +6,7 @@
  * @description
  * # flexSlider
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .directive('flexSlider', function ($timeout) {
     return {
       templateUrl: '../views/directives/flex-slider.html',

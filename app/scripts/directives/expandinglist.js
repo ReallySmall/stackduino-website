@@ -6,7 +6,7 @@
  * @description
  * # expandingList
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .directive('expandingList', function () {
     return {
       templateUrl: '../views/directives/expanding-list.html',

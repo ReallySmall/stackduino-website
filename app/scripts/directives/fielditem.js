@@ -6,7 +6,7 @@
  * @description
  * # fieldItem
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
   .directive('fieldItem', function () {
     return {
       templateUrl: '../views/directives/field-item.html',

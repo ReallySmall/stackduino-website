@@ -6,7 +6,7 @@
  * @description
  * # galleryItems
  */
-angular.module('testApp')
+angular.module('stackduinoApp')
 	.directive('galleryItems', function ($timeout) {
 	return {
 		templateUrl: '../views/directives/image-list.html',

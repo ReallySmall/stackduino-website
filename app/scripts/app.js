@@ -18,6 +18,7 @@ angular
     'ngTouch',
     'angularUtils.directives.dirPagination',
     'ng-breadcrumbs',
+    'chart.js',
     'seo'
   ])
   .config(function ($locationProvider, $routeProvider) {
@@ -44,12 +45,18 @@ angular
       .when('/boards/:board', {
         templateUrl: 'views/board.html',
         label: 'Board',
-        controller: 'BoardCtrl',
+        controller: 'BoardsCtrl',
         controllerAs: 'board'
       })
       .when('/build', {
         templateUrl: 'views/build.html',
         label: 'Build',
+        controller: 'BuildCtrl',
+        controllerAs: 'build'
+      })
+      .when('/build/:nid', {
+        templateUrl: 'views/build-article.html',
+        label: 'Article',
         controller: 'BuildCtrl',
         controllerAs: 'build'
       })

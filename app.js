@@ -36,10 +36,19 @@ app.get('/api/content/:args', apicache('15 minutes'), function(req, res){
   });
 });
 
+// route to proxy calls to content api
+app.get('/api/content/:args/:args2', apicache('15 minutes'), function(req, res){
+  var query = apis.routes.content + req.params.args + '/' + req.params.args2;
+  request(query, function(error, response, body) {
+    res.send(body);
+  });
+});
+
 // route to proxy calls to Flickr api
 app.get('/api/flickr/:args', apicache('15 minutes'), function(req, res){
   var query = apis.routes.flickr + '?api_key=' + apis.keys.flickr.api_key + req.params.args;
   request(query, function(error, response, body) {
+    console.log(body);
     res.send(body);
   });
 });

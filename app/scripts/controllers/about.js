@@ -10,12 +10,14 @@
 angular.module('stackduinoApp')
   .controller('AboutCtrl', function ($scope, $http, $location, getPages, getApiRoots) {
     
-  		getPages.requestAll()
+  		getPages.requestPages(11)
         .success(function(data, status, headers) {
           $scope.aboutContent = data[0];
           $scope.title = $scope.aboutContent.title[0].value;
           $scope.summary = $scope.aboutContent.body[0].summary; 
           $scope.body = $scope.aboutContent.body[0].value;
+          $scope.images = $scope.aboutContent.field_image;
+          console.log($scope.aboutContent);
         });
 
   });

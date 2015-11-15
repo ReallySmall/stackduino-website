@@ -1,4 +1,4 @@
-'use strict';
+'uswqe strict';
 
 /**
  * @ngdoc function
@@ -8,47 +8,51 @@
  * Controller of the testApp
  */
 angular.module('stackduinoApp')
-  .controller('BoardsCtrl', function ($scope, $http, $location, getBoards, getFlickrImages) {
+  .controller('BoardsCtrl', function($scope, $routeParams, $http, $location, getBoards, getApiRoots) {
 
-  $scope.imageLink = getBoards.imageHref;
+    var boardParam = $routeParams.board;
 
-	getBoards.requestAll()
-    .success(function(data, status, headers) {
-      $scope.boards = data;
+    getBoards.requestAll()
+        .success(function(data, status, headers) {
 
-      getFlickrImages.requestSiteImages()
-      .success(function(data, status, headers) {
+          $scope.boards = data;
 
-        //get matching image urls for each board
-        for(var i = 0; i < $scope.boards.length; i++){
-          
-          var $this = $scope.boards[i];
-          var boardVersion = 'v' + $this.field_board_machine_id[0].value.replace(/\./g,'');
-          var rawResults = data.photoset.photo;          
-            
-          //get the urls of images with tags matching this board version
-          $this.images = getFlickrImages.cachedTag(boardVersion) || getFlickrImages.filterByTag(rawResults, boardVersion);
-          console.log($this.images);
+                          console.log($scope.boards);
 
-        }
 
-      });
+          if(boardParam){
+
+            for(var i = 0; i < $scope.boards.length; i++){
+
+                var boardTitle = $scope.boards[i].title[0].value.replace(' ', '-').toLowerCase();
+
+                if(boardParam === boardTitle){
+                    $scope.board = $scope.boards[i];
+                }
+
+            }
+
+            if(!$scope.board && boardParam){
+              $location.path('/');
+            }
+
+          }     
 
     });
 
     $scope.createPath = function(item){
-    	item = item.replace(/ /g, '-').toLowerCase();
-    	var url = $location.absUrl() + '/' + item;
-    	return url;
-  	}; 
+      item = item.replace(/ /g, '-').toLowerCase();
+      var url = $location.absUrl() + '/' + item;
+      return url;
+    }; 
 
-  	$scope.display = {
-  		formats: {
-  			grid: true
-  		},
-  		sort: {
-  			order: true
-  		}
-  	};
+    $scope.display = {
+      formats: {
+        grid: true
+      },
+      sort: {
+        order: true
+      }
+    };
 
-  });
+});

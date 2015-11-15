@@ -1,4 +1,16 @@
-<div ng-controller="BuildCtrl" class="content col-md-12">      
-    <h1>Build</h1>
-    <p>Articles on building a Stackduino controller</p>  
+<div class="content col-md-12">
+	<section>      
+	    <h1>Build</h1>
+	    <p>Articles on building a Stackduino controller</p>
+	    <form>
+	    	<input type="text" placeholder="Search articles" />
+	    </form>
+	    <div>
+		    <ul class="plain">
+		    	<li data-ng-repeat="article in articles">
+		    		<a href="/build/{{ article.nid }}" data-tags="{{ article.tags }}">{{ article.title }}</a>
+		    	</li>
+		    </ul>
+	    </div>
+    </section>  
 </div>

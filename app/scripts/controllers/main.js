@@ -8,11 +8,13 @@
  * Controller of the testApp
  */
 angular.module('stackduinoApp')
-  .controller('MainCtrl', function ($scope, $rootScope, breadcrumbs, getFlickrImages, $location) {
+  .controller('MainCtrl', function ($scope, $rootScope, breadcrumbs, getWrapperContent, getFlickrImages, $location) {
   	//breadcrumbs.options = { 'Board': $routeProvider.board };
   	$scope.breadcrumbs = breadcrumbs;
     $scope.featureImages = [];
     $scope.featureImageCount = 5;
+    $scope.socialLinks = [];
+    $scope.footerLinks = [];
 
   	getFlickrImages.requestSiteImages()
         .success(function(data, status, headers) {
@@ -68,24 +70,15 @@ angular.module('stackduinoApp')
       },
     ];
 
-    $scope.footerLinks = [ //hardcoded for now, maybe get this from api in future
-      {
-        title: 'Boards',
-        href: '/boards'
-      },
-      {
-        title: 'Blog',
-        href: '/blog'
-      },
-      {
-        title: 'Gallery',
-        href: '/gallery'
-      },
-      {
-        title: 'Tools',
-        href: '/Tools'
-      }
-    ];
+    getWrapperContent.requestHeader()
+      .success(function(data, status, headers) {
+        //$scope.socialLinks = data;
+      });
+
+    getWrapperContent.requestFooter()
+      .success(function(data, status, headers) {
+        $scope.footerLinks = data;
+      });
 
     $scope.isCurrentPath = function (path) {
       if(path === '/'){

@@ -1,4 +1,4 @@
-'uswqe strict';
+'use strict';
 
 /**
  * @ngdoc function
@@ -8,37 +8,25 @@
  * Controller of the testApp
  */
 angular.module('stackduinoApp')
-  .controller('BoardsCtrl', function($scope, $routeParams, $http, $location, getBoards, getApiRoots) {
+  .controller('BoardsCtrl', function($scope, $routeParams, $http, $location, boardList) {
 
     var boardParam = $routeParams.board;
+    $scope.boardList = boardList.data;
 
-    getBoards.requestAll()
-        .success(function(data, status, headers) {
+    if(boardParam){
 
-          $scope.boards = data;
+      for(var i = 0; i < $scope.boardList.length; i++){
+        var boardTitle = $scope.boardList[i].title[0].value.replace(' ', '-').toLowerCase();
+        if(boardParam === boardTitle){
+            $scope.board = $scope.boardList[i];
+        }
+      }
 
-                          console.log($scope.boards);
+      if(!$scope.board && boardParam){
+        $location.path('/');
+      }
 
-
-          if(boardParam){
-
-            for(var i = 0; i < $scope.boards.length; i++){
-
-                var boardTitle = $scope.boards[i].title[0].value.replace(' ', '-').toLowerCase();
-
-                if(boardParam === boardTitle){
-                    $scope.board = $scope.boards[i];
-                }
-
-            }
-
-            if(!$scope.board && boardParam){
-              $location.path('/');
-            }
-
-          }     
-
-    });
+    }     
 
     $scope.createPath = function(item){
       item = item.replace(/ /g, '-').toLowerCase();

@@ -20,30 +20,19 @@ angular.module('stackduinoApp')
 	    }
 	};
 
-	var buildArticleList = {
-	    doRequest: function() {
-	      	return $http({
-	      		method:'GET',
-	      		url: getApiRoots.drupal + "build",
-	      		cache: true 
-	      	});
-	    }
-	};
-
-	var buildArticle = {
+	var article = {
 	    doRequest: function(articleId) {
 	      	return $http({
 	      		method:'GET',
-	      		url: getApiRoots.drupal + "build/" + articleId,
+	      		url: getApiRoots.drupal + "articles/" + articleId,
 	      		cache: true 
 	      	});
 	    }
 	};
 
     return {
-      requestPages: function(pageId) { return page.doRequest(pageId); },
-      requestBuildArticles: function() { return buildArticleList.doRequest(); },
-      requestBuildArticle: function(articleId) { return buildArticle.doRequest(articleId); }
+      requestPage: function(pageId) { return page.doRequest(pageId); },
+      requestArticle: function(articleId) { return article.doRequest(articleId); }
     };
 
 });

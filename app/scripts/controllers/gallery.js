@@ -8,16 +8,8 @@
  * Controller of the testApp
  */
 angular.module('stackduinoApp')
-  .controller('GalleryCtrl', function ($scope, getFlickrImages) {
+  .controller('GalleryCtrl', function ($scope, imageList) {
 
-    getFlickrImages.requestAll()
-	    .success(function(data, status, headers) {
-	      $scope.images = data.photos.photo;
-	    });
-
-	getFlickrImages.requestSiteImages()
-	    .success(function(data, status, headers) {
-	      $scope.siteImages = data.photoset.photo;
-	    });
+    $scope.images = imageList.data.photos.photo;
 
   });

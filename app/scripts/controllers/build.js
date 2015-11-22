@@ -12,7 +12,7 @@ angular.module('stackduinoApp')
 
   	if($routeParams.nid){
 
-  		getPages.requestBuildArticle($routeParams.nid)
+  		getPages.requestArticle($routeParams.nid)
         .success(function(data, status, headers) {
           $scope.article = data;
           $scope.title = $scope.article[0].title;
@@ -21,7 +21,7 @@ angular.module('stackduinoApp')
 
   	} else {
 
-  		getPages.requestBuildArticles()
+  		getPages.requestArticle('all')
         .success(function(data, status, headers) {
           $scope.articles = data;
           console.log($scope.articles);

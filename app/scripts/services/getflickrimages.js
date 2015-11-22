@@ -28,13 +28,15 @@ angular.module('stackduinoApp')
     //get Flickr images tagged with 'Stackduino'
   	var taggedWithStackduino = {
 	    doRequest: function() {
-
       	return $http({
       		method:'GET',
     			dataType: 'json',
 	      	url: getApiRoots.flickr + apiArgs.format + apiArgs.searchMethod + apiArgs.tags + apiArgs.extras + apiArgs.mode,
 	      	cache: true 
-	      });
+	      })
+        .success(function(data, status, headers, conf) {
+          return data;
+        });
 
 	    }
   	};

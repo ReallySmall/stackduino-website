@@ -8,7 +8,7 @@
 	    <div>
 		    <ul class="plain">
 		    	<li data-ng-repeat="article in articles">
-		    		<a href="/build/{{ article.nid }}" data-tags="{{ article.tags }}">{{ article.title }}</a>
+		    		<a href="/build/{{ article.nid[0].value }}">{{ article.title[0].value }}</a>
 		    	</li>
 		    </ul>
 	    </div>

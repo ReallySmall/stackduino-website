@@ -22,13 +22,13 @@ angular
     'seo'
   ])
   .config(function ($locationProvider, $routeProvider) {
-    $locationProvider.html5Mode(true)
+    $locationProvider.html5Mode(true);
     $routeProvider
       .when('/', {
         templateUrl: 'views/about.html',
         label: 'Home',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'PageCtrl',
+        controllerAs: 'page'
       })
       .when('/404', {
         templateUrl: 'views/404.html',
@@ -40,13 +40,23 @@ angular
         templateUrl: 'views/boards.html',
         label: 'Boards',
         controller: 'BoardsCtrl',
-        controllerAs: 'boards'
-      })
+        controllerAs: 'boards',
+        resolve: {
+          boardList: function(getBoards){
+            return getBoards;
+          }
+        }
+      })  
       .when('/boards/:board', {
         templateUrl: 'views/board.html',
-        label: 'Board',
+        label: ':board',
         controller: 'BoardsCtrl',
-        controllerAs: 'board'
+        controllerAs: 'board',
+        resolve: {
+          boardList: function(getBoards){
+            return getBoards;
+          }
+        }
       })
       .when('/build', {
         templateUrl: 'views/build.html',
@@ -64,7 +74,12 @@ angular
         templateUrl: 'views/gallery.html',
         label: 'Gallery',
         controller: 'GalleryCtrl',
-        controllerAs: 'gallery'
+        controllerAs: 'gallery',
+        resolve: {
+          imageList: function(getFlickrImages){
+            return getFlickrImages.requestAll();
+          }
+        }
       })
       .otherwise({
         redirectTo: '/'

@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc service
- * @name testApp.getBoards
+ * @name stackduinoApp.getBoards
  * @description
  * # getBoards
- * Service in the testApp.
+ * Service in the stackduinoApp.
  */
 angular.module('stackduinoApp')
 
@@ -17,12 +17,13 @@ angular.module('stackduinoApp')
 	      		method:'GET',
 	      		url: getApiRoots.drupal + "boards",
 	      		cache: true 
-	      	});
+	      	})
+	      	.success(function(data, status, headers, conf) {
+        		return data;
+      		});
 	    }
 	};
 
-    return {
-      requestAll: function() { return boardList.doRequest(); }
-    };
+    return boardList.doRequest();
 
 });

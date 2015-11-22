@@ -11,6 +11,9 @@ angular.module('stackduinoApp')
     return {
       templateUrl: '../views/directives/board-list.html',
       restrict: 'A',
+      scope: {
+        listItems: '=listItems'
+      },
       link: function (scope, element, attrs) {
         	
         	var masonryGrid = { //methods for creating, updaing and destroying masonry layouts
@@ -18,7 +21,7 @@ angular.module('stackduinoApp')
         		init: function(){
         			$timeout(function () {
 	        			element.isotope({
-	            			itemSelector: '.board',
+	            		itemSelector: '.board',
 	        				layoutMode: 'masonry',
 	        				getSortData: {
 	        					boardId: '[data-board-id]'
@@ -47,16 +50,10 @@ angular.module('stackduinoApp')
         		}
         	};
 
-    		scope.$watch('boards', function(old, updated) { //run isotope layout functions
-
-    				if(scope.boards.length){
-    					$timeout(function(){
-    						masonryGrid.init();
-    					}, 50);
-    				}
+  				$timeout(function(){
+  					masonryGrid.init();
+  				}, 50);
     	
-        	}, true);
-
     		scope.$watch('display.formats.grid', function(grid, list) { //re-run masonry when called by layout change control
 				if(masonryGrid.initialised){
 					masonryGrid.destroy();
@@ -66,11 +63,7 @@ angular.module('stackduinoApp')
 
 			scope.$watch('display.sort.order', function(original, reverse) { //resort masonry when called by sort change control
      			if(masonryGrid.initialised){
-     				if(reverse){
-     					masonryGrid.sort('ascending');
-     				} else {
-     					masonryGrid.sort('descending');
-     				}
+            masonryGrid.sort(reverse == true ? 'ascending' : 'descending');
      			}
  			}, true);
         	

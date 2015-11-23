@@ -6,14 +6,6 @@
       </div>
       <ul class="col-md-4 plain pull-right no-list-style display-options">
         <li>
-          Display
-          <a href="javascript:void(0)" 
-             data-ng-click="display.formats.grid = !display.formats.grid" 
-             title="View type" 
-             data-ng-class="display.formats.grid === true ? 'fa fa-columns' : 'fa fa-list'">
-          </a>
-        </li>
-        <li>
         Sort
           <a href="javascript:void(0)" 
             data-ng-click="display.sort.order = !display.sort.order" 
@@ -25,5 +17,5 @@
         </li>
       </ul>
     </div>
-    <article data-board-list data-list-items="boardList" class="row boards-list"><article>
+    <article data-board-list data-list-items="boardList" data-sort="display.sort.order" class="row boards-list"><article>
 </div>

@@ -1,15 +1,17 @@
   <div data-loading-indicator="listItems" class="col-sm-12"></div>
-  <section data-ng-repeat="item in listItems" class="board" ng-class="display.formats.grid ? 'col-sm-6' : ''" data-board-id="{{ item.machineId }}">
+  <section data-ng-repeat="item in listItems" class="board col-md-12" data-board-id="{{ item.field_board_machine_id[0].value }}">
     <div class="panel clearfix">
-      <div data-ng-class="display.formats.grid ? '' : 'col-sm-10'">
+      <div class="row">
+      <div class="col-sm-10">
         <h2 class=""><a data-ng-href="{{ createPath(iten.title[0].value) }}">{{ item.title[0].value }}</a></h2>
         <p class="about-content" ng-bind-html="item.body[0].summary"></p>
         <h4 data-ng-show="item.field_repository_link[0].value">
           <a class="repository-link" ng-href="{{ item.field_repository_link[0].value }}">View on GitHub</a>
         </h4>
       </div>
-      <div data-ng-class="display.formats.grid ? '' : 'col-sm-2'">  
+      <div class="col-sm-2">  
         <img data-ng-src="{{ item.field_images[0].url }}" alt="{{ item.field_images[0].alt }}" />
       </div>
+    </div>
     </div>  
   </section>

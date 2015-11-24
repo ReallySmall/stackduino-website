@@ -1,6 +1,6 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
 @import "variables";
@@ -467,6 +467,34 @@ ul {
 
 .boards-list {
   .board {
+    &.prototype {
+      padding-left: 20%;
+      .panel {
+        position: relative;
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          //height: 130%;
+          width: 15%;
+          left: -15%;
+          bottom: 50%;
+          top: -20px;
+          border-bottom: 6px solid $lightest-grey;
+          border-left: 6px solid $lightest-grey;
+          margin-bottom: -3px;
+        }
+      }
+      &:first-child {
+        .panel {
+          background: green;
+          &:before {
+            top: -20px;
+            height: auto;
+          }
+        }
+      }
+    }
     .repository-link {
       &:before {
         font-family: FontAwesome;

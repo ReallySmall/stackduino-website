@@ -61,7 +61,7 @@ angular.module('stackduinoApp')
       {
         title: 'Build',
         href: '/build',
-        icon: 'gear'
+        icon: 'gears'
       },
       {
         title: 'Gallery',

@@ -52,11 +52,6 @@ angular
         label: ':board',
         controller: 'BoardsCtrl',
         controllerAs: 'board',
-        resolve: {
-          boardList: function(getBoards){
-            return getBoards;
-          }
-        }
       })
       .when('/build', {
         templateUrl: 'views/build.html',
@@ -75,11 +70,6 @@ angular
         label: 'Gallery',
         controller: 'GalleryCtrl',
         controllerAs: 'gallery',
-        resolve: {
-          imageList: function(getFlickrImages){
-            return getFlickrImages.requestAll();
-          }
-        }
       })
       .otherwise({
         redirectTo: '/'

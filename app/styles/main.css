@@ -13845,37 +13845,64 @@ ul.display-options li a.desc-active .fa-sort-asc {
   padding-left: 0;
 }
 
-/* line 470, main.scss */
-.boards-list .board.prototype {
-  padding-left: 20%;
+/* line 468, main.scss */
+.img-placeholder {
+  background: #e8e8e8;
+  position: relative;
 }
-/* line 472, main.scss */
+/* line 471, main.scss */
+.img-placeholder:before {
+  content: "\f03e";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 120px;
+  line-height: 120px;
+  margin: -60px 0 0 -60px;
+  color: #D4D3D3;
+}
+/* line 482, main.scss */
+.img-placeholder img {
+  position: absolute;
+}
+
+/* line 488, main.scss */
+.boards-list .board {
+  z-index: 100;
+}
+/* line 490, main.scss */
+.boards-list .board.prototype {
+  padding: 0 15%;
+  z-index: 50;
+}
+/* line 493, main.scss */
 .boards-list .board.prototype .panel {
   position: relative;
 }
-/* line 474, main.scss */
+/* line 495, main.scss */
 .boards-list .board.prototype .panel:before {
   content: '';
   display: block;
   position: absolute;
-  width: 15%;
-  left: -15%;
+  height: 150%;
+  width: 10%;
+  left: -10%;
   bottom: 50%;
-  top: -20px;
   border-bottom: 6px solid #e8e8e8;
   border-left: 6px solid #e8e8e8;
   margin-bottom: -3px;
 }
-/* line 489, main.scss */
+/* line 509, main.scss */
 .boards-list .board.prototype:first-child .panel {
   background: green;
 }
-/* line 491, main.scss */
+/* line 511, main.scss */
 .boards-list .board.prototype:first-child .panel:before {
   top: -20px;
   height: auto;
 }
-/* line 499, main.scss */
+/* line 519, main.scss */
 .boards-list .board .repository-link:before {
   font-family: FontAwesome;
   content: '\f09b';
@@ -13884,42 +13911,42 @@ ul.display-options li a.desc-active .fa-sort-asc {
   color: #000;
 }
 
-/* line 512, main.scss */
+/* line 532, main.scss */
 .gallery-image figure figcaption {
   margin: 10px 0 0 0;
   border-left: 2px solid #e8e8e8;
 }
-/* line 516, main.scss */
+/* line 536, main.scss */
 .gallery-image figure figcaption p:first-child {
   font-weight: bold;
 }
 
-/* line 524, main.scss */
+/* line 544, main.scss */
 .blog-list {
   margin: 0 0 40px 0 !important;
 }
-/* line 526, main.scss */
+/* line 546, main.scss */
 .blog-list ul {
   margin: 0 0 20px 0;
 }
 
-/* line 532, main.scss */
+/* line 552, main.scss */
 figure img {
   background: #fff;
 }
-/* line 535, main.scss */
+/* line 555, main.scss */
 figure figcaption {
-  padding: 0 20px;
+  padding: 0 15px;
   font-size: 0.9em;
   color: #3B3A35;
 }
 
-/* line 543, main.scss */
+/* line 563, main.scss */
 #content-wrap .tabs-wrapper {
   margin: 0 0 20px 0;
 }
 
-/* line 548, main.scss */
+/* line 568, main.scss */
 .version-status {
   float: left;
   padding: 5px 10px;
@@ -13928,67 +13955,67 @@ figure figcaption {
   -moz-box-shadow: 0px 0px 6px 0px rgba(50, 50, 50, 0.15);
   box-shadow: 0px 0px 6px 0px rgba(50, 50, 50, 0.15);
 }
-/* line 555, main.scss */
+/* line 575, main.scss */
 .version-status.active, .version-status.supported {
   background: #37a537;
 }
-/* line 558, main.scss */
+/* line 578, main.scss */
 .version-status.prototype {
   background: #cb585c;
 }
 
-/* line 563, main.scss */
+/* line 583, main.scss */
 .panel {
   padding: 15px;
   clear: both;
   border: 1px solid #dddddd;
 }
-/* line 567, main.scss */
+/* line 587, main.scss */
 .panel .panel-header {
   margin: -16px -16px 15px -16px;
   padding: 15px;
   background: #e8e8e8;
   border-bottom: 3px solid #3B3A35;
 }
-/* line 573, main.scss */
+/* line 593, main.scss */
 .panel .panel-sub-header {
   color: #bebdbd;
   border-bottom: 2px solid #bebdbd;
   margin-top: 20px;
   margin-bottom: 10px;
 }
-/* line 579, main.scss */
+/* line 599, main.scss */
 .panel.image-slider {
   max-height: 660px;
 }
-/* line 582, main.scss */
+/* line 602, main.scss */
 .panel.image-slider li img {
   margin: 0 !important;
   padding: 0 !important;
   max-width: 100% !important;
 }
 
-/* line 593, main.scss */
+/* line 613, main.scss */
 #slidebox ul li {
   overflow: hidden;
   max-height: 550px;
 }
 
-/* line 600, main.scss */
+/* line 620, main.scss */
 .clear-none {
   clear: none;
 }
 
-/* line 604, main.scss */
+/* line 624, main.scss */
 .clear-per-word {
   word-spacing: 9999px;
 }
 
-/* line 608, main.scss */
+/* line 628, main.scss */
 .blog-date {
   z-index: 5 !important;
 }
-/* line 610, main.scss */
+/* line 630, main.scss */
 .blog-date p {
   background-color: #337ab7;
   padding: 10px 20px;
@@ -13998,7 +14025,7 @@ figure figcaption {
   color: white;
   position: relative;
 }
-/* line 618, main.scss */
+/* line 638, main.scss */
 .blog-date p:after {
   content: '';
   right: -25px;

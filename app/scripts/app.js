@@ -40,12 +40,7 @@ angular
         templateUrl: 'views/boards.html',
         label: 'Boards',
         controller: 'BoardsCtrl',
-        controllerAs: 'boards',
-        resolve: {
-          boardList: function(getBoards){
-            return getBoards;
-          }
-        }
+        controllerAs: 'boards'
       })  
       .when('/boards/:board', {
         templateUrl: 'views/board.html',

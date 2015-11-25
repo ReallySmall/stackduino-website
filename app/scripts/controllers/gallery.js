@@ -12,7 +12,7 @@ angular.module('stackduinoApp')
 
     getFlickrImages.requestAll()
 	    .success(function(data, status, headers) {
-	      $scope.images = data.photos.photo;
+	      $scope.images = data.photos.photo;	      
 	    });
 
   });

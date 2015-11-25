@@ -21,7 +21,7 @@ angular.module('stackduinoApp')
   		imageSizeMethod: '&method=flickr.photos.getSizes',
   		photoSet: '&photoset_id=72157632341602394',
   		tags: '&tag_mode=all&tags=stackduino,-controller',
-  		extras: '&extras=tags,owner_name,url_o',
+  		extras: '&extras=tags,owner_name,url_l',
   		mode: '&safe_search=1' 
   	};
 

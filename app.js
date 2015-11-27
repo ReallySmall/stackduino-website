@@ -47,7 +47,8 @@ app.get('/api/content/:args/:args2', function(req, res){
 });
 
 // route to proxy calls to Flickr api
-app.get('/api/flickr/:args', apicache('15 minutes'), function(req, res){
+//app.get('/api/flickr/:args', apicache('15 minutes'), function(req, res){
+app.get('/api/flickr/:args', function(req, res){
   var query = apis.routes.flickr + '?api_key=' + apis.keys.flickr.api_key + req.params.args;
   request(query, function(error, response, body) {
     res.send(body);

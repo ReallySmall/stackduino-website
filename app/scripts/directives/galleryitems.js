@@ -13,7 +13,8 @@ angular.module('stackduinoApp')
 		restrict: 'A',
 		replace: true,
 		scope: {
-			images: '=galleryItems'
+			images: '=galleryItems',
+			newItemCount: '=newItemCount'
 		},
 		link: function (scope, element, attrs) {
 
@@ -24,8 +25,19 @@ angular.module('stackduinoApp')
 	    			$timeout(function () {
 	        			element.isotope({
 	            			itemSelector: '.gallery-image',
-	        				layoutMode: 'masonry'
+	        				layoutMode: 'masonry',
+	        				transformsEnabled : false
 	            		});	
+	        		}, 100);
+	        		initialised = true;
+	    		},
+	    		layout: function(){
+	    			$timeout(function () {
+	    				console.log(1);
+	    				console.log(element.find('li').slice(-scope.newItemCount));
+	    				var items = element.find('li').slice(-scope.newItemCount);
+	    				items.hide()
+	        			element.isotope('appended', items, items.fadeIn('slow'));	
 	        		}, 100);
 	    		},
 	    	};
@@ -34,7 +46,7 @@ angular.module('stackduinoApp')
 
 					if(scope.images && scope.images.length){
 						$timeout(function(){
-							masonryGrid.init();
+							initialised == true ? masonryGrid.layout() : masonryGrid.init();
 						}, 250);
 					}
 		

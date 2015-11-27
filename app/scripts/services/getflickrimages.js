@@ -21,17 +21,17 @@ angular.module('stackduinoApp')
   		imageSizeMethod: '&method=flickr.photos.getSizes',
   		photoSet: '&photoset_id=72157632341602394',
   		tags: '&tag_mode=all&tags=stackduino,-controller',
-  		extras: '&extras=tags,owner_name,url_l',
+  		extras: '&extras=tags,owner_name,url_n',
   		mode: '&safe_search=1' 
   	};
 
     //get Flickr images tagged with 'Stackduino'
   	var taggedWithStackduino = {
-	    doRequest: function() {
+	    doRequest: function(perPage, page) {
       	return $http({
       		method:'GET',
     			dataType: 'json',
-	      	url: getApiRoots.flickr + apiArgs.format + apiArgs.searchMethod + apiArgs.tags + apiArgs.extras + apiArgs.mode,
+	      	url: getApiRoots.flickr + apiArgs.format + '&per_page=' + perPage + '&page=' + page + apiArgs.searchMethod + apiArgs.tags + apiArgs.extras + apiArgs.mode,
 	      	cache: true 
 	      })
         .success(function(data, status, headers, conf) {
@@ -93,8 +93,8 @@ angular.module('stackduinoApp')
     var cachedTags = {};
 
     return {
-      requestAll: function() { 
-      	return taggedWithStackduino.doRequest(); 
+      requestAll: function(perPage, page) { 
+      	return taggedWithStackduino.doRequest(perPage, page); 
       },
       requestSiteImages: function() { 
       	return siteImages.doRequest(); 

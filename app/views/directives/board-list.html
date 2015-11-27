@@ -4,13 +4,15 @@
       <div class="row">
       <div class="col-sm-9">
         <h2 class=""><a data-ng-href="{{ createPath(item.title[0].value) }}">{{ item.title[0].value }}</a></h2>
+        <p>{{ item.field_status[0].value }}</p>
         <p class="about-content" ng-bind-html="item.body[0].summary"></p>
-        <h4 data-ng-show="item.field_repository_link[0].value">
+        <h4 data-ng-show="item.field_repository_link[0].value && toClass(item.field_status[0].value) !== 'prototype'">
           <a class="repository-link" ng-href="{{ item.field_repository_link[0].value }}">View on GitHub</a>
         </h4>
       </div>
       <div class="col-sm-3">  
         <img data-ng-src="{{ item.field_images[0].url }}" alt="{{ item.field_images[0].alt }}" />
+        <span class="fa fa-ban"></span>
       </div>
     </div>
     </div>  

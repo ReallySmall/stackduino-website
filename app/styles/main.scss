@@ -216,6 +216,7 @@ ul {
 .loading-content {
   font-size: 4em;
   color: $light-grey;
+  text-align: center;
 }
 
 #main-content {
@@ -468,6 +469,7 @@ ul {
 .img-placeholder {
   background: $lightest-grey;
   position:relative;
+  overflow: hidden;
   &:before {
     content: "\f03e";
     font-family: FontAwesome;
